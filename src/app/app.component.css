@@ -1,0 +1,40 @@
+p {
+  font-family: Lato;
+}
+/* Bắt đầu Stick Nav */
+sticknav {
+background: #ffffff;
+height: 30px;
+width: 100%;
+margin-right: 0px;
+margin-left: 0px;
+left: 0px;
+right: 0px;
+position: relative;
+z-index: 9999;
+}
+.fixed { position:fixed;}
+/* Kết thúc Stick Nav */
+
+.container-fluid {
+  width:100%;
+  margin: auto;
+}
+
+.navbar {
+overflow: hidden;
+background-color: white;
+/* position: fixed;
+top: 0; */
+height: 100px;
+width: 100%;
+}
+
+.navbar a {
+float: left;
+display: block;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+}

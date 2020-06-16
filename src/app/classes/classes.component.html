@@ -1,0 +1,70 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<h3>DANH SÁCH LỚP NGÀNH {{major.majorCode}}</h3>
+			</div>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="form-group form-inline">
+						Tìm kiếm: <input class="form-control ml-2" type="text" name="search" [(ngModel)]="term" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<select [(ngModel)]="majorSelected" (ngModelChange)="onMajorSelected($event)"
+						style="margin-left: 46px;">
+						<option *ngFor="let m of majors" [value]="m.id">
+							{{m.majorName}}
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<table class="table table-striped" style="border: 1px solid black;">
+			<tr>
+				<th style="width: 505px;" colspan="2">Tên lớp</th>
+				<th>
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#staticBackdrop">Thêm</button>
+				</th>
+			</tr>
+			<tr *ngFor="let c of classes | filter:term">
+				<td>{{c.className}}</td>
+				<td>FPT Polytechnic</td>
+				<td>
+					<a class="btn btn-info" [routerLink]="['../../students/', major.id,c.id]">Xem</a>&nbsp;
+					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#staticBackdrop"
+						(click)="editClass(c.id)">Sửa</button>&nbsp;
+					<button type="button" class="btn btn-danger" (click)="removeClass(c.id)">Xóa</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+	aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Thông tin lớp học</h5>
+			</div>
+			<div class="modal-body">
+				{{classForm.value | json}}
+				<form [formGroup]="classForm">
+					<div class="form-row">
+						<div class="col">
+							<input type="text" class="form-control" placeholder="Tên lớp" formControlName="className">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveClass()">Lưu</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>

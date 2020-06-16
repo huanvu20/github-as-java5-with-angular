@@ -1,0 +1,12 @@
+.card{
+    margin: 35px;
+}
+.row{
+    border: 1px solid black ;
+}
+.card{
+    border: 1px solid black ;
+}
+.card-body{
+    margin: 0 auto;
+}

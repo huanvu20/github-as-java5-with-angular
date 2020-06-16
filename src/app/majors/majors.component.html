@@ -1,0 +1,59 @@
+<div class="container-fluid">
+  <div class="row">
+    <p>Ngành học</p>
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-primary" style="margin-left: 20px;" data-toggle="modal"
+      data-target="#staticBackdrop">Thêm ngành</button>
+  </div>
+  <div class="row">
+    <div class="card" style="width: 15rem;" *ngFor="let m of majors">
+      <img [src]="m.majorImg" class="card-img-top" width="161px" height="230px" alt="...">
+      <div class="card-body">
+        <div class="row">
+          <h5 class="card-title">{{m.majorName}}</h5>
+        </div>
+        <div class="row">
+          <a class="btn btn-info" [routerLink]="['/manager/classes', m.id]">Xem</a>&nbsp;
+          <button class="btn btn-info" data-toggle="modal" data-target="#staticBackdrop"
+            (click)="editMajor(m.id)">Sửa</button>&nbsp;
+          <button class="btn btn-danger" (click)="removeMajor(m.id)">Xóa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal-->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thông tin ngành học</h5>
+      </div>
+      <div class="modal-body">
+        {{majorForm.value | json}}
+        <form [formGroup]="majorForm">
+          <div class="form-row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Tên ngành" formControlName="majorName">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Mã ngành" formControlName="majorCode">
+            </div>
+          </div>
+          <br>
+          <div class="form-row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Hình ảnh" formControlName="majorImg">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveMajor()">Lưu</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Đóng</button>
+      </div>
+    </div>
+  </div>

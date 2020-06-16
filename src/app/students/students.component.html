@@ -1,0 +1,96 @@
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Mã SV</th>
+                <th>Ảnh đại diện</th>
+                <th>Họ và tên</th>
+                <th><button type="button" data-toggle="modal" data-target="#staticBackdrop1"
+                        class="btn btn-primary">Thêm</button> </th>
+            </tr>
+            <tr *ngFor="let s of students">
+                <td style="padding-top: 40px;">{{s.studentId}}</td>
+                <td><img [src]="s.avatar" class="rounded-circle" alt="Cinque Terre" width="96px"></td>
+                <td style="padding-top: 40px;">{{s.name}}</td>
+                <td style="padding-top: 35px;">
+                    <a type="button" class="btn btn-info" 
+                        [routerLink]="['../../../student-detail/', majorId,classId,s.id]">Sửa</a>&nbsp;
+                    <button type="button" class="btn btn-danger" (click)="removeStudent(s.id)">Xóa</button>
+                </td>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<!--Modal-->
+<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông tin sinh viên</h5>
+            </div>
+            <div class="modal-body">
+                {{studentForm.value | json}}
+                <form [formGroup]="studentForm">
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Họ và tên</label>
+                            <input type="text" class="form-control" placeholder="Họ và tên" formControlName="name">
+                        </div>
+                        <div class="col">
+                            <label>Mã SV</label>
+                            <input type="text" class="form-control" placeholder="Họ và tên" formControlName="studentId">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Ngày sinh</label>
+                            <input type="text" class="form-control" placeholder="Họ và tên" formControlName="birtDate">
+                        </div>
+                        <div class="col">
+                            <label>Giới tính</label>
+                            <select id="inputState" class="form-control" formControlName="gender">
+                                <option value=true>Nam</option>
+                                <option value=false>Nữ</option>
+                              </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Đường dẫn hình ảnh</label>
+                            <input type="text" class="form-control" placeholder="Hình ảnh" formControlName="avatar">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group d-flex justify-content-center">
+                        <img [src]="studentForm.value.avatar" alt="" class="img-thumbnail" width="100px">
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Email</label>
+                            <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                        </div>
+                        <div class="col">
+                            <label>Số điện thoại</label>
+                            <input type="text" class="form-control" placeholder="Số điện thoại"
+                                formControlName="phoneNumber">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Địa chỉ</label>
+                            <input type="text" class="form-control" placeholder="Địa chỉ" formControlName="address">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveStudent()">Lưu</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Đóng</button>
+            </div>
+        </div>
+    </div>
