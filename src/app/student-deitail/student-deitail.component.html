@@ -1,1 +1,95 @@
-<p>student-deitail works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-7 rounded" style="max-width: 650px;height: 300px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img [src]="studentForm.value.avatar" class="card-img img-thumbnail" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{studentForm.value.name}}</h5>
+                            <p style="font-size: 15px;margin-top: -5px;">Sinh viên</p>
+                            <p class="card-text"></p>
+                            <p class="card-text"><small class="text-muted">{{major.majorName}}</small></p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row no-gutters">
+                    &nbsp; Email:          <p class="text-muted" style="margin-left: 75px;">{{studentForm.value.email}}</p>
+                    &nbsp; Số điện thoại:  <p class="text-muted" style="margin-left: 20px;">{{studentForm.value.phoneNumber}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8" style="background-color: white;">
+            <div class="row">
+                <p style="padding-top: 30px;margin-left: 17px;">Thông tin cá nhân</p>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <hr>
+                    <form [formGroup]="studentForm" class="rounded">
+                        <div class="form-row">
+                            <div class="col">
+                                <label class="text-muted">Họ và tên</label>
+                                <input type="text" class="form-control" placeholder="Họ và tên" formControlName="name">
+                            </div>
+                            <div class="col">
+                                <label class="text-muted">Mã SV</label>
+                                <input type="text" class="form-control" placeholder="Họ và tên"
+                                    formControlName="studentId">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label class="text-muted">Ngày sinh</label>
+                                <input type="text" class="form-control" placeholder="Họ và tên"
+                                    formControlName="birtDate">
+                            </div>
+                            <div class="col">
+                                <label class="text-muted">Giới tính</label>
+                                <select id="inputState" class="form-control" formControlName="gender">
+                                    <option value=true>Nam</option>
+                                    <option value=false>Nữ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label class="text-muted">Đường dẫn hình ảnh</label>
+                                <input type="text" class="form-control" placeholder="Hình ảnh"
+                                    formControlName="avatar">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label class="text-muted">Email</label>
+                                <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                            </div>
+                            <div class="col">
+                                <label class="text-muted">Số điện thoại</label>
+                                <input type="text" class="form-control" placeholder="Số điện thoại"
+                                    formControlName="phoneNumber">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label class="text-muted">Địa chỉ</label>
+                                <input type="text" class="form-control" placeholder="Địa chỉ" formControlName="address">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveStudent()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
