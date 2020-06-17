@@ -32,7 +32,7 @@ import { StudentDeitailComponent } from './student-deitail/student-deitail.compo
       { path: "manager", component: ManagerComponent,
         children: [
           { path: '',redirectTo: 'home',pathMatch: 'full'},
-          { path: "home", component: HomeComponent},
+          { path: "home/:accountId", component: HomeComponent},
           { path: "majors", component: MajorsComponent},
           { path: "classes/:majorId", component: ClassesComponent },
           { path: "students/:majorId/:classId", component: StudentsComponent},

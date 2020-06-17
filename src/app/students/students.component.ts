@@ -78,12 +78,6 @@ export class StudentsComponent implements OnInit {
         console.log(data);
         this.loadDSStudent();
       });
-    } else {
-      // cập nhật
-      this.motelService.updateStudent(this.studentForm.value, this.majorId, this.classId).subscribe(data => {
-        console.log(data);
-        this.loadDSStudent();
-      });
     }
   }
 

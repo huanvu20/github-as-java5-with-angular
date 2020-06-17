@@ -36,18 +36,18 @@
                     <div class="form-row">
                         <div class="col">
                             <label>Họ và tên</label>
-                            <input type="text" class="form-control" placeholder="Họ và tên" formControlName="name">
+                            <input type="text" class="form-control" formControlName="name">
                         </div>
                         <div class="col">
                             <label>Mã SV</label>
-                            <input type="text" class="form-control" placeholder="Họ và tên" formControlName="studentId">
+                            <input type="text" class="form-control" formControlName="studentId">
                         </div>
                     </div>
                     <br>
                     <div class="form-row">
                         <div class="col">
                             <label>Ngày sinh</label>
-                            <input type="text" class="form-control" placeholder="Họ và tên" formControlName="birtDate">
+                            <input type="text" class="form-control" formControlName="birtDate">
                         </div>
                         <div class="col">
                             <label>Giới tính</label>
@@ -61,7 +61,7 @@
                     <div class="form-row">
                         <div class="col">
                             <label>Đường dẫn hình ảnh</label>
-                            <input type="text" class="form-control" placeholder="Hình ảnh" formControlName="avatar">
+                            <input type="text" class="form-control" formControlName="avatar">
                         </div>
                     </div>
                     <br>
@@ -71,29 +71,25 @@
                     <div class="form-row">
                         <div class="col">
                             <label>Email</label>
-                            <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                            <input type="text" class="form-control" formControlName="email">
                         </div>
                         <div class="col">
                             <label>Số điện thoại</label>
-                            <input type="text" class="form-control" placeholder="Số điện thoại"
-                                formControlName="phoneNumber">
+                            <input type="text" class="form-control" formControlName="phoneNumber">
                         </div>
                     </div>
                     <br>
                     <div class="form-row">
                         <div class="col">
                             <label>Địa chỉ</label>
-                            <input type="text" class="form-control" placeholder="Địa chỉ" formControlName="address">
+                            <input type="text" class="form-control" formControlName="address">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveStudent()">Lưu</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveStudent()">Thêm</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Đóng</button>
             </div>
         </div>
     </div>
-<!--
-    demo comit 2
--->

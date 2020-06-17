@@ -3,6 +3,7 @@ import { MotelService } from "../motel.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-student-deitail',
@@ -14,12 +15,17 @@ export class StudentDeitailComponent implements OnInit {
   class = null;
   major = null;
   student = null;
+
   majors = [];
+  classes = [];
+
   majorId = null;
   classId = null;
   studentId = null;
   term;
 
+  majorSelected = null
+  classSelected = null
   genderSelected = null
 
   studentForm = new FormGroup({
@@ -48,6 +54,11 @@ export class StudentDeitailComponent implements OnInit {
       this.student = data;
     });
   }
+  loadClass(classId) {
+    this.motelService.getClassesById(classId).subscribe(data => {
+      this.classes = data
+    })
+  }
 
   ngOnInit() {
     this.activeRoute.paramMap.subscribe(params => {
@@ -63,6 +74,8 @@ export class StudentDeitailComponent implements OnInit {
       });
     });
     this.editStudent(this.studentId)
+
+
   }
 
   editStudent(id) {
@@ -74,15 +87,31 @@ export class StudentDeitailComponent implements OnInit {
       });
     }
   }
-  onGenderSelected(val: any) {
-    this.studentForm.value.gender = (val == "Nam") ? true : false
-  }
-  saveStudent() {
+
+  updateStudent() {
     // cập nhật
     this.motelService.updateStudent(this.studentForm.value, this.majorId, this.classId).subscribe(data => {
       console.log(data);
       this.loadIn4Student();
     });
     alert("Cập nhật thành công!")
+  }
+
+  onMajorSelected(val: any) {
+    //Lấy tất cả lớp học theo ngành học
+    //Lấy id ngành
+    this.loadClass(val)
+  }
+  onClassSelected(val: any) {
+    //Lấy id lớp
+  }
+  forward() {
+    //Láy tất cả ngành học
+    this.motelService.getMajors().subscribe(data => {
+      this.majors = data;
+    });
+    this.majorSelected = this.majorId;
+    this.loadClass(this.majorId)
+    this.classSelected = this.classId
   }
 }

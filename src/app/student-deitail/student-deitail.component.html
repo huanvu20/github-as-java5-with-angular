@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <div class="card mb-7 rounded" style="max-width: 650px;height: 300px;">
+            <div class="card mb-8 rounded" style="max-width: 650px;height: 300px;">
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         <img [src]="studentForm.value.avatar" class="card-img img-thumbnail" alt="...">
@@ -17,8 +17,13 @@
                 </div>
                 <br>
                 <div class="row no-gutters">
-                    &nbsp; Email:          <p class="text-muted" style="margin-left: 75px;">{{studentForm.value.email}}</p>
-                    &nbsp; Số điện thoại:  <p class="text-muted" style="margin-left: 20px;">{{studentForm.value.phoneNumber}}</p>
+                    <div class="col">
+                        <p style="margin-left: 5px;">Email: <span class="text-muted" style="margin-left: 70px;">{{studentForm.value.email}}</span>
+                        </p>
+                        <p style="margin-left: 5px;">Số điện thoại: <span class="text-muted"
+                                style="margin-left: 15px;">{{studentForm.value.phoneNumber}}</span></p>
+                        <p style="margin-left: 5px;">Trạng thái: <span class="text-muted" style="margin-left: 40px;">HDI (học đi)</span></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,8 +93,45 @@
                 </div>
             </div>
             <div class="row">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveStudent()">Lưu</button>
+                <button type="button" class="btn btn-primary" (click)="updateStudent()">Lưu</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                    data-target="#staticBackdrop1" (click)="forward()">Chuyển lớp</button>
             </div>
         </div>
     </div>
 </div>
+
+<!--Modal-->
+<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">FPT Polytechnic</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <label>Chuyên ngành</label>
+                        <select [(ngModel)]="majorSelected" (ngModelChange)="onMajorSelected($event)"
+                            class="form-control">
+                            <option *ngFor="let m of majors" [value]="m.id">
+                                {{m.majorName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label>Lớp</label>
+                        <select [(ngModel)]="classSelected" (ngModelChange)="onClassSelected($event)"
+                            class="form-control">
+                            <option *ngFor="let c of classes" [value]="c.id">{{c.className}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Lưu</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>

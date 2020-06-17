@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           this.accountForm.setValue(data);
           this.update(this.accountId,true)
           alert("Đăng nhập thành công")
-          this.router.navigate(['manager'])
+          this.router.navigate(['manager/home/'+this.accountId])
         });
       }
     }
