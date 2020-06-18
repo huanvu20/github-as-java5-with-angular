@@ -2,7 +2,6 @@
     <div class="card card-container">
         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <p id="profile-name" class="profile-name-card"></p>
-        {{accountForm.value | json}}
         <form class="form-signin" [formGroup]="accountForm">
             <span id="reauth-email" class="reauth-email"></span>
             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus formControlName="username">

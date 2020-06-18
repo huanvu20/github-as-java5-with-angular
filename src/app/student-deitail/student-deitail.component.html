@@ -18,11 +18,13 @@
                 <br>
                 <div class="row no-gutters">
                     <div class="col">
-                        <p style="margin-left: 5px;">Email: <span class="text-muted" style="margin-left: 70px;">{{studentForm.value.email}}</span>
+                        <p style="margin-left: 5px;">Email: <span class="text-muted"
+                                style="margin-left: 70px;">{{studentForm.value.email}}</span>
                         </p>
                         <p style="margin-left: 5px;">Số điện thoại: <span class="text-muted"
                                 style="margin-left: 15px;">{{studentForm.value.phoneNumber}}</span></p>
-                        <p style="margin-left: 5px;">Trạng thái: <span class="text-muted" style="margin-left: 40px;">HDI (học đi)</span></p>
+                        <p style="margin-left: 5px;">Trạng thái: <span class="text-muted" style="margin-left: 40px;">HDI
+                                (học đi)</span></p>
                     </div>
                 </div>
             </div>
@@ -94,15 +96,15 @@
             </div>
             <div class="row">
                 <button type="button" class="btn btn-primary" (click)="updateStudent()">Lưu</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
-                    data-target="#staticBackdrop1" (click)="forward()">Chuyển lớp</button>
+                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                    data-target="#staticBackdrop1" (click)="forward()">Chuyển lớp</button> -->
             </div>
         </div>
     </div>
 </div>
 
 <!--Modal-->
-<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+<!-- <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -130,8 +132,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Lưu</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="chuyenNganh()">Xác
+                    nhận</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
             </div>
         </div>
-    </div>
+    </div> -->
