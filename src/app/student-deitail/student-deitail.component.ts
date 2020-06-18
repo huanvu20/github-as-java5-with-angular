@@ -3,7 +3,7 @@ import { MotelService } from "../motel.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { data } from 'jquery';
+
 
 @Component({
   selector: 'app-student-deitail',

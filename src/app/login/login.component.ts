@@ -12,13 +12,21 @@ export class LoginComponent implements OnInit {
   accounts = []
   account = null;
   accountId = null;
+
   accountForm = new FormGroup({
     id: new FormControl(null),
-    username: new FormControl(""),
-    password: new FormControl("null"),
+    username: new FormControl("",[
+      Validators.required,
+      Validators.pattern("^[a-zA-Z]+[ a-zA-Z ]*")
+    ]),
+    password: new FormControl("",[
+      Validators.required
+    ]),
     name: new FormControl(""),
     status: new FormControl(false)
   });
+   get username() { return this.accountForm.get('username'); }
+   get password() { return this.accountForm.get('password'); }
 
   constructor(
     private loginService: LoginService,
@@ -41,17 +49,21 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    for(var i = 0;i<this.accounts.length;i++){
-      if(this.accounts[i].username == this.accountForm.value.username && this.accounts[i].password == this.accountForm.value.password){
-        this.accountId = i+1
-        //Lấy thông tin tài khoản
-        this.loginService.getAccountById(this.accountId).subscribe(data => {
-          this.accountForm.setValue(data);
-          this.update(this.accountId,true)
-          alert("Đăng nhập thành công")
-          this.router.navigate(['manager/home/'+this.accountId])
-        });
-      }
+ if(this.accountForm.invalid){
+   alert("Vui lòng điền đầy đủ thông tin tài khoản và mật khẩu")
+ }else{
+  for(var i = 0;i<this.accounts.length;i++){
+    if(this.accounts[i].username == this.accountForm.value.username && this.accounts[i].password == this.accountForm.value.password){
+      this.accountId = i+1
+      //Lấy thông tin tài khoản
+      this.loginService.getAccountById(this.accountId).subscribe(data => {
+        this.accountForm.setValue(data);
+        this.update(this.accountId,true)
+        alert("Đăng nhập thành công")
+        this.router.navigate(['manager'])
+      });
     }
   }
+}
+ }
 }
