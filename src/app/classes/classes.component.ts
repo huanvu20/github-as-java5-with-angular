@@ -68,6 +68,7 @@ export class ClassesComponent implements OnInit {
   onMajorSelected(val: any) {
     this.router.navigate(['manager/classes/' + val])
   }
+  
   removeClass(id) {
     let conf = confirm("Bạn chắc chắn muốn xóa Student này?");
     if (conf) {
@@ -115,5 +116,5 @@ export class ClassesComponent implements OnInit {
         Validators.pattern("^[a-zA-Z]+[ a-zA-Z ]+[0-9]*")
       ]),
     });
-  }
+  } 
 }
