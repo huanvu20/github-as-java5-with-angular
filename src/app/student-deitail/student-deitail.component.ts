@@ -3,7 +3,7 @@ import { MotelService } from "../motel.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-student-deitail',
@@ -24,10 +24,14 @@ export class StudentDeitailComponent implements OnInit {
   studentId = null;
 
   term;
+  
+  message
 
   majorSelected = null
   classSelected = null
   genderSelected = null
+
+  valueStudents = []
 
   studentForm = new FormGroup({
     id: new FormControl(null),
@@ -46,7 +50,7 @@ export class StudentDeitailComponent implements OnInit {
     private motelService: MotelService,
     private activeRoute: ActivatedRoute,
     private router: Router,
-    config: NgbModalConfig, private modalService: NgbModal
+    private dataService: DataService
   ) { }
 
   loadIn4Student() {
@@ -62,9 +66,12 @@ export class StudentDeitailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataService.currentMessage.subscribe(message => this.message = message);
+    this.majorId = this.message[0]
+    this.classId = this.message[1]
     this.activeRoute.paramMap.subscribe(params => {
-      this.majorId = params.get("majorId");
-      this.classId = params.get("classId");
+      // this.majorId = params.get("majorId");
+      // this.classId = params.get("classId");
       this.studentId = params.get("studentId");
       this.loadIn4Student()
       this.motelService.getClassById(this.majorId, this.classId).subscribe(data => {

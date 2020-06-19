@@ -3,13 +3,13 @@ import { MotelService } from "../motel.service";
 import { LoginService } from "../login.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-majors',
   templateUrl: './majors.component.html',
   styleUrls: ['./majors.component.css']
 })
 export class MajorsComponent implements OnInit {
-
   majors = [];
   account = null;
   majorForm = new FormGroup({
@@ -40,7 +40,8 @@ export class MajorsComponent implements OnInit {
     private motelService: MotelService,
     private loginService: LoginService,
     private activeRoute: ActivatedRoute,
-    private route: Router
+    private route: Router,
+    private dataService: DataService
   ) { }
 
   ngOnInit() {
@@ -105,5 +106,6 @@ export class MajorsComponent implements OnInit {
       ])
     });
   }
-
+  name = 2019
+  //test
 }

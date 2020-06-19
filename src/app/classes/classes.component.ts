@@ -3,6 +3,7 @@ import { MotelService } from "../motel.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from '../services/data.service';
 import * as $ from 'jquery';
 
 
@@ -12,13 +13,15 @@ import * as $ from 'jquery';
   styleUrls: ['./classes.component.css'],
   providers: [NgbModalConfig, NgbModal]
 })
+
 export class ClassesComponent implements OnInit {
+
   classes = [];
   major = null;
   majors = [];
   majorId = null;
   term;
-
+  message;
   majorSelected = null;
 
   classForm = new FormGroup({
@@ -36,7 +39,8 @@ export class ClassesComponent implements OnInit {
     private motelService: MotelService,
     private activeRoute: ActivatedRoute,
     private router: Router,
-    config: NgbModalConfig, private modalService: NgbModal
+    config: NgbModalConfig,
+    private dataService: DataService
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -66,9 +70,15 @@ export class ClassesComponent implements OnInit {
   }
 
   onMajorSelected(val: any) {
-    this.router.navigate(['manager/classes/' + val])
+    // this.router.navigate(['manager/classes/' + val])
+    this.majorId = val
+    this.loadDSClass();
+    this.motelService.getMajorById(this.majorId).subscribe(data => {
+      console.log(data);
+      this.major = data;
+    });
   }
-  
+
   removeClass(id) {
     let conf = confirm("Bạn chắc chắn muốn xóa Student này?");
     if (conf) {
@@ -116,5 +126,9 @@ export class ClassesComponent implements OnInit {
         Validators.pattern("^[a-zA-Z]+[ a-zA-Z ]+[0-9]*")
       ]),
     });
-  } 
-}
+  }
+
+
+  //test
+
+} 

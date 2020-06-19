@@ -3,6 +3,7 @@ import { MotelService } from "../motel.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from '../services/data.service';
 import * as $ from 'jquery';
 
 @Component({
@@ -14,10 +15,10 @@ export class StudentsComponent implements OnInit {
   class = null;
   students = [];
   majors = [];
-  majorId = null;
-  classId = null;
+  majorId;
+  classId;
   term;
-
+  message
   genderSelected = null
 
   studentForm = new FormGroup({
@@ -37,7 +38,7 @@ export class StudentsComponent implements OnInit {
     private motelService: MotelService,
     private activeRoute: ActivatedRoute,
     private route: Router,
-    config: NgbModalConfig, private modalService: NgbModal
+    private dataService: DataService
   ) { }
 
   loadDSStudent() {
@@ -57,6 +58,9 @@ export class StudentsComponent implements OnInit {
         this.class = data;
       });
     });
+
+    //Truyền tham số sang student-detail
+    this.dataService.changeMessage([this.majorId, this.classId])
   }
 
   editStudent(id) {
@@ -89,7 +93,7 @@ export class StudentsComponent implements OnInit {
       });
     }
   }
-  cancel(){
+  cancel() {
     this.studentForm = new FormGroup({
       id: new FormControl(null),
       classId: new FormControl(null),
