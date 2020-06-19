@@ -40,7 +40,6 @@ export class ManagerComponent implements OnInit {
   ngOnInit() {
     this.activeRoute.paramMap.subscribe(params => {
       this.accountId = params.get("accountId");
-      alert(this.accountId)
       this.loginService.getAccountById(this.accountId).subscribe(data => {
         this.account = data;
       });

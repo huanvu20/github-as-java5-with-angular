@@ -52,18 +52,16 @@ export class LoginComponent implements OnInit {
  if(this.accountForm.invalid){
    alert("Vui lòng điền đầy đủ thông tin tài khoản và mật khẩu")
  }else{
-  for(var i = 0;i<this.accounts.length;i++){
-    if(this.accounts[i].username == this.accountForm.value.username && this.accounts[i].password == this.accountForm.value.password){
-      this.accountId = i+1
-      //Lấy thông tin tài khoản
-      this.loginService.getAccountById(this.accountId).subscribe(data => {
-        this.accountForm.setValue(data);
-        this.update(this.accountId,true)
+  // for(var i = 0;i<this.accounts.length;i++){
+  //   if(this.accounts[i].username == this.accountForm.value.username && this.accounts[i].password == this.accountForm.value.password){
+  //     this.accountId = i+1
+  //     //Lấy thông tin tài khoản
+  //     this.loginService.getAccountById(this.accountId).subscribe(data => {
+  //       this.accountForm.setValue(data);
+  //       this.update(this.accountId,true)
         alert("Đăng nhập thành công")
         this.router.navigate(['manager'])
-      });
+      // });
     }
   }
-}
- }
 }
