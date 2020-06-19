@@ -45,7 +45,7 @@ export class StudentDeitailComponent implements OnInit {
   constructor(
     private motelService: MotelService,
     private activeRoute: ActivatedRoute,
-    private route: Router,
+    private router: Router,
     config: NgbModalConfig, private modalService: NgbModal
   ) { }
 
@@ -98,61 +98,60 @@ export class StudentDeitailComponent implements OnInit {
     alert("Cập nhật thành công!")
   }
 
-  // //Chuyển lớp/ngành
-  // idMajorto = null
-  // idClassto = null
+  //Chuyển lớp/ngành
+  idMajorto = 0
+  idClassto = 0
 
-  // onMajorSelected(val: any) {
-  //   //Lấy tất cả lớp học theo ngành học
-  //   //Lấy id ngành
-  //   this.loadClass(val)
-  //   this.idMajorto = val
-  // }
-  // onClassSelected(val: any) {
-  //   //Lấy id lớp
-  //   this.idClassto = val
-  // }
-  // forward() {
-  //   //Láy tất cả ngành học
-  //   this.motelService.getMajors().subscribe(data => {
-  //     this.majors = data;
-  //   });
-  //   this.majorSelected = this.majorId;
-  //   this.loadClass(this.majorId)
-  //   this.classSelected = this.classId
-  // }
+  onMajorSelected(val: any) {
+    //Lấy tất cả lớp học theo ngành học
+    //Lấy id ngành
+    this.loadClass(val)
+    this.idMajorto = val
+    this.idClassto = 0
+  }
+  onClassSelected(val: any) {
+    //Lấy id lớp
+    this.idClassto = val
+  }
+  forward() {
+    //Láy tất cả ngành học
+    this.motelService.getMajors().subscribe(data => {
+      this.majors = data;
+    });
+    this.majorSelected = this.majorId;
+    this.loadClass(this.majorId)
+    this.classSelected = this.classId
+  }
 
-  // saveStudent() {
-  //   if (this.studentForm.value.id == null) {
-  //     // thêm mới
-  //     this.motelService.addStudent(this.studentForm.value, this.idMajorto, this.idClassto).subscribe(data => {
-  //       console.log(data);
-  //     });
-  //   }
-  // }
-  // removeStudent() {
-  //   this.motelService.removeStudentById(this.idMajorto, this.idClassto, this.studentId).subscribe(data => { });
-  // }
-  // chuyenNganh() {
-  //   alert(this.majorId)
-  //   this.idMajorto = (this.idClassto == null) ? this.majorId : this.idMajorto
-  //   this.idClassto = (this.idClassto == null) ? this.classId : this.idClassto
-  //   this.studentForm.value.id = null
-  //   alert(this.idMajorto + this.idClassto + this.studentForm.value.id)
-  //   this.saveStudent()
-  //   this.route.navigate(['manager/students/' + this.idMajorto + '/' + this.idClassto])
-  //   this.removeStudent()
-  //   //   let conf = confirm("Chọn OK để thực thi");
-  //   //   if (conf) {
-  //   //     //add student vào lớp/ngành mới
-  //   //     console.lo
-  //   //     this.motelService.addStudent(this.studentForm.value, this.majorId, this.classId)
-  //   //     alert('Thành công!')
-  //   //     //xóa student muốn chuyển
-  //   //     this.motelService.removeStudentById(this.majorId, this.classId, this.studentId).subscribe(data => {});
-  //   //     //forward
-
-  //   //   }
-  //   // }
-  // }
+  saveStudent() {
+    if (this.studentForm.value.id == null) {
+      // thêm mới
+      this.motelService.addStudent(this.studentForm.value, this.idMajorto, this.idClassto).subscribe(data => {
+        console.log(data);
+      });
+    }
+  }
+  removeStudent() {
+    this.motelService.removeStudentById(this.idMajorto, this.idClassto, this.studentId).subscribe(data => {
+      console.log(data);
+    });
+  }
+  chuyenNganh() {
+    this.idMajorto = (this.idMajorto == 0) ? this.majorId : this.idMajorto
+    if (this.idClassto == 0) {
+      alert("Vui lòng chọn lớp")
+      return
+    }
+    console.log(this.idClassto + this.idMajorto)
+    this.studentForm.value.id = null
+    let conf = confirm("Chọn OK để thực thi");
+    if (conf) {
+      //add student vào lớp/ngành mới
+      this.saveStudent()
+      alert('Thành công!')
+      this.removeStudent()
+      this.router.navigate(['manager'])
+    }
+  }
 }
+

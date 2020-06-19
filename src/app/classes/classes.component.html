@@ -22,12 +22,12 @@
 		</div>
 	</div>
 	<div class="row">
-		<table class="table table-striped" style="border: 1px solid black;">
+		<table class="table table-striped">
 			<tr>
 				<th style="width: 505px;" colspan="2">Tên lớp</th>
 				<th>
 					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#staticBackdrop">Thêm</button>
+						data-target="#staticBackdrop" (click)="cancel()">Thêm</button>
 				</th>
 			</tr>
 			<tr *ngFor="let c of classes | filter:term">
