@@ -25,7 +25,8 @@ export class ClassesComponent implements OnInit {
     id: new FormControl(null),
     majorId: new FormControl(null),
     className: new FormControl("", [
-      Validators.required
+      Validators.required,
+      Validators.pattern("^[a-zA-Z]+[ a-zA-Z ]+[0-9]*")
     ]),
   });
 
@@ -109,7 +110,10 @@ export class ClassesComponent implements OnInit {
     this.classForm = new FormGroup({
       id: new FormControl(null),
       majorId: new FormControl(null),
-      className: new FormControl(""),
+      className: new FormControl("",[
+        Validators.required,
+        Validators.pattern("^[a-zA-Z]+[ a-zA-Z ]*")
+      ]),
     });
   }
 }

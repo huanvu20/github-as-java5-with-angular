@@ -3,7 +3,7 @@
   </div>
   <div class="row">
     <button type="button" class="btn btn-primary" style="margin-left: 25px;" data-toggle="modal"
-      data-target="#staticBackdrop">Thêm ngành</button>
+      data-target="#staticBackdrop" (click)="cancel()">Thêm ngành</button>
   </div>
   <div class="row">
     <div class="card" style="width: 15rem;" *ngFor="let m of majors">
@@ -35,22 +35,38 @@
         <form [formGroup]="majorForm">
           <div class="form-row">
             <div class="col">
+              <label>Tên ngành</label>
               <input type="text" class="form-control" placeholder="Tên ngành" formControlName="majorName">
+              <div *ngIf="majorName.invalid && (majorName.touched || majorName.dirty)" style="color: red;">
+                <div *ngIf="majorName.errors.required">Không được để trống</div>
+                <div *ngIf="majorName.errors.pattern">Sai định dạng</div>
+              </div>
             </div>
             <div class="col">
+              <label>Mã ngành</label>
               <input type="text" class="form-control" placeholder="Mã ngành" formControlName="majorCode">
+              <div *ngIf="majorCode.invalid && (majorCode.touched || majorCode.dirty)" style="color: red;">
+                <div *ngIf="majorCode.errors.required">Không được để trống</div>
+                <div *ngIf="majorCode.errors.pattern">Sai định dạng</div>
+              </div>
             </div>
           </div>
           <br>
           <div class="form-row">
             <div class="col">
+              <label>Hình ảnh</label>
               <input type="text" class="form-control" placeholder="Hình ảnh" formControlName="majorImg">
+              <div *ngIf="majorImg.invalid && (majorImg.touched || majorImg.dirty)" style="color: red;">
+                <div *ngIf="majorImg.errors.required">Không được để trống</div>
+                <div *ngIf="majorImg.errors.pattern">Sai đường dẫn hình ảnh</div>
+              </div>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveMajor()">Lưu</button>
+        <button type="button" class="btn btn-primary" 
+        data-dismiss="modal" (click)="saveMajor()" [disabled]="majorForm.invalid">Lưu</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Đóng</button>
       </div>
     </div>

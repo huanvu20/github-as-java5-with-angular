@@ -1,60 +1,41 @@
-<!DOCTYPE html>
-<html>
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>FPT Polytechnic</h3>
+        </div>
+        <ul class="list-unstyled components">
+            <img src="https://scontent.fhan3-3.fna.fbcdn.net/v/t1.0-9/p960x960/90340645_2594260954186886_6567393913462587392_o.jpg?_nc_cat=106&_nc_sid=85a577&_nc_oc=AQkfrO_fb6MIQ6TrL_22byDEeSmC6aF73ndoKHOdQ5ktCNphVaMQCGrkAuQoVswIyR8&_nc_ht=scontent.fhan3-3.fna&_nc_tp=6&oh=8641d75be09305abad2bdc70a864c8e9&oe=5F108702"
+            class="rounded-circle" width="50px" style="margin-left: 10px;"/>&nbsp;&nbsp; {{account.name}}
+            <hr>
+            <li>
+                <a routerLink="/manager/home">Trang chủ</a>
+            </li>
+            <li>
+                <a routerLink="/manager/accountId/majors">Ngành học</a>
+            </li>
+        </ul>
+    </nav>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Page Content  -->
+    <div id="content">
 
-    <title>Collapsible sidebar using Bootstrap 4</title>
-
-    <!-- Scrollbar Custom CSS -->
-
-
-</head>
-
-<body>
-
-    <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>Bootstrap Sidebar</h3>
-            </div>
-            <ul class="list-unstyled components">
-                <p>Dummy Heading</p>
-                <li>
-                    <a routerLink="/manager/home">Trang chủ</a>
-                </li>
-                <li>
-                    <a routerLink="/manager/majors">Ngành học</a>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- Page Content  -->
-        <div id="content">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-7">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info">
+                            <i class="fas fa-align-left"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-6">
                     </div>
                 </div>
-            </nav>
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-</body>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-</html>
+                </div>
+            </div>
+        </nav>
+        <router-outlet></router-outlet>
+    </div>
+</div>

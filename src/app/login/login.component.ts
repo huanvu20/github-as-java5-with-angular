@@ -17,12 +17,12 @@ export class LoginComponent implements OnInit {
     id: new FormControl(null),
     username: new FormControl("",[
       Validators.required,
-      Validators.pattern("^[a-zA-Z]+[ a-zA-Z ]*")
     ]),
     password: new FormControl("",[
       Validators.required
     ]),
     name: new FormControl(""),
+    avatar: new FormControl(""),
     status: new FormControl(false)
   });
    get username() { return this.accountForm.get('username'); }

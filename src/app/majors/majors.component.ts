@@ -9,16 +9,27 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   styleUrls: ['./majors.component.css']
 })
 export class MajorsComponent implements OnInit {
- 
+
   majors = [];
   account = null;
   majorForm = new FormGroup({
     id: new FormControl(null),
-    majorName: new FormControl('',[
-       Validators.required
+    majorName: new FormControl('', [
+      Validators.required,
+      Validators.pattern("^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+        "ẸẺẼỀỀẾưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+        "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+[ a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+        "ẸẺẼỀỀẾưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+        "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]*"),
     ]),
-    majorCode: new FormControl(null),
-    majorImg: new FormControl(null)
+    majorCode: new FormControl("", [
+      Validators.required,
+      Validators.pattern("^[a-zA-Z]+[ a-zA-Z ]*")
+    ]),
+    majorImg: new FormControl("", [
+      Validators.required,
+      Validators.pattern(/\.(gif|jpe?g|tiff|png|webp|bmp)$/i)
+    ])
   });
 
   get majorName() { return this.majorForm.get('majorName'); }
@@ -32,19 +43,11 @@ export class MajorsComponent implements OnInit {
     private route: Router
   ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.motelService.getMajors().subscribe(data => {
       console.log(data);
       this.majors = data;
     });
-
-    // this.activeRoute.paramMap.subscribe(params => {
-    //   this.accountId = params.get("accountId");
-    //   this.loginService.getAccountById(this.accountId).subscribe(data => {
-    //     console.log(data);
-    //     this.account = data;
-    //   });
-    // });
   }
 
   removeMajor(id) {
@@ -84,12 +87,22 @@ export class MajorsComponent implements OnInit {
   cancel() {
     this.majorForm = new FormGroup({
       id: new FormControl(null),
-      majorName: new FormControl("",[
+      majorName: new FormControl('', [
+        Validators.required,
+        Validators.pattern("^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+          "ẸẺẼỀỀẾưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+          "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+[ a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+          "ẸẺẼỀỀẾưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+          "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]*"),
+      ]),
+      majorCode: new FormControl("", [
         Validators.required,
         Validators.pattern("^[a-zA-Z]+[ a-zA-Z ]*")
       ]),
-      majorCode: new FormControl(null),
-      majorImg: new FormControl(null)
+      majorImg: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/\.(gif|jpe?g|tiff|png|webp|bmp)$/i)
+      ])
     });
   }
 

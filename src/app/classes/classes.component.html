@@ -12,7 +12,7 @@
 				</div>
 				<div class="col-md-4">
 					<select [(ngModel)]="majorSelected" (ngModelChange)="onMajorSelected($event)"
-						 class="form-control" style="width: 200px;margin-left: 47px;">
+						 class="form-control" style="width: 200px;margin-left: 37px;">
 						<option *ngFor="let m of majors" [value]="m.id">
 							{{m.majorName}}
 						</option>
@@ -55,13 +55,19 @@
 				<form [formGroup]="classForm">
 					<div class="form-row">
 						<div class="col">
+							<label>Tên lớp</label>
 							<input type="text" class="form-control" placeholder="Tên lớp" formControlName="className">
+							<div *ngIf="className.invalid && (className.touched || className.dirty)" style="color: red;">
+								<div *ngIf="className.errors.required">Không được để trống</div>
+								<div *ngIf="className.errors.pattern">Sai định dạng</div>
+							  </div>
 						</div>
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveClass()">Lưu</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" 
+				(click)="saveClass()" [disabled]="classForm.invalid">Lưu</button>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Đóng</button>
 			</div>
 		</div>

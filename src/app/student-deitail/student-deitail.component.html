@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <div class="card mb-8 rounded" style="max-width: 650px;height: 300px;">
+        <div class="col-md-4 rounded">
+            <div class="card mb-8" style="max-width: 650px;height: 300px;">
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         <img [src]="studentForm.value.avatar" class="card-img img-thumbnail" alt="...">
@@ -29,15 +29,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8" style="background-color: white;">
+        <div class="col-md-8 rounded" style="background-color: whitesmoke;height: 620px;">
             <div class="row">
                 <p style="padding-top: 30px;margin-left: 17px;">Thông tin cá nhân</p>
-
             </div>
             <div class="row">
                 <div class="col">
                     <hr>
-                    <form [formGroup]="studentForm" class="rounded">
+                    <form [formGroup]="studentForm">
                         <div class="form-row">
                             <div class="col">
                                 <label class="text-muted">Họ và tên</label>

@@ -1,9 +1,6 @@
 .card{
     margin: 23.5px;
 }
-.row{
-    border: 1px solid black ;
-}
 .card{
-    border: 1px solid black ;
+    border: 1px solid turquoise ;
 }
