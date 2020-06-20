@@ -38,12 +38,8 @@ export class ClassesComponent implements OnInit {
   constructor(
     private motelService: MotelService,
     private activeRoute: ActivatedRoute,
-    private router: Router,
-    config: NgbModalConfig,
-    private dataService: DataService
   ) {
-    config.backdrop = 'static';
-    config.keyboard = false;
+
   }
 
   loadDSClass() {

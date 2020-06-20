@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MotelService } from "../motel.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-
+import { data } from 'jquery';
+declare var jquery: any;
+declare var $: any;
 @Component({
   selector: 'app-student-deitail',
   templateUrl: './student-deitail.component.html',
@@ -20,10 +22,6 @@ export class StudentDeitailComponent implements OnInit {
   majorId = null;
   classId = null;
   studentId = null;
-
-  term;
-
-  message
 
   majorSelected = null
   classSelected = null
@@ -50,34 +48,36 @@ export class StudentDeitailComponent implements OnInit {
     private router: Router,
   ) { }
 
-  loadIn4Student() {
-    this.motelService.getStudentById(this.majorId, this.classId, this.studentId).subscribe(data => {
-      this.student = data;
-    });
-  }
-  loadClass(classId) {
+  // loadIn4Student() {
+  //   this.motelService.getStudentById(this.majorId, this.classId, this.studentId).subscribe(data => {
+  //     this.student = data;
+  //   });
+  // }
+  loadClasses(classId) {
     this.motelService.getClassesById(classId).subscribe(data => {
       this.classes = data
     })
   }
-
+  loadClass() {
+    this.motelService.getClassById(this.majorId, this.classId).subscribe(data => {
+      this.class = data;
+    });
+  }
+  loadMajor() {
+    this.motelService.getMajorById(this.majorId).subscribe(data => {
+      this.major = data;
+    });
+  }
   ngOnInit() {
     this.activeRoute.paramMap.subscribe(params => {
       this.majorId = params.get("majorId");
       this.classId = params.get("classId");
       this.studentId = params.get("studentId");
-      this.loadIn4Student()
-      this.motelService.getClassById(this.majorId, this.classId).subscribe(data => {
-        this.class = data;
-      });
-      this.motelService.getMajorById(this.majorId).subscribe(data => {
-        this.major = data;
-      });
+      this.loadClass()
+      this.loadMajor()
     });
+    // this.loadIn4Student()
     this.editStudent(this.studentId)
-    // if(this.studentForm.value == null){
-    //   this.router.navigate(['hello'])
-    // }
   }
 
   editStudent(id) {
@@ -92,7 +92,7 @@ export class StudentDeitailComponent implements OnInit {
   updateStudent() {
     // cập nhật
     this.motelService.updateStudent(this.studentForm.value, this.majorId, this.classId).subscribe(data => {
-      this.loadIn4Student();
+      // this.loadIn4Student();
     });
     alert("Cập nhật thành công!")
   }
@@ -104,7 +104,7 @@ export class StudentDeitailComponent implements OnInit {
   onMajorSelected(val: any) {
     //Lấy tất cả lớp học theo ngành học
     //Lấy id ngành
-    this.loadClass(val)
+    this.loadClasses(val)
     this.idMajorto = val
     this.idClassto = 0
   }
@@ -118,7 +118,7 @@ export class StudentDeitailComponent implements OnInit {
       this.majors = data;
     });
     this.majorSelected = this.majorId;
-    this.loadClass(this.majorId)
+    this.loadClasses(this.majorId)
     this.classSelected = this.classId
   }
 
