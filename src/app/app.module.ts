@@ -36,9 +36,10 @@ import { StudentDeitailComponent } from './student-deitail/student-deitail.compo
           { path: "majors", component: MajorsComponent},
           { path: "classes/:majorId", component: ClassesComponent },
           { path: "students/:majorId/:classId", component: StudentsComponent},
-          { path: "student-detail/:studentId", component: StudentDeitailComponent},
+          { path: "student-detail/:majorId/:classId/:studentId", component: StudentDeitailComponent},
         ]
-      }
+      },
+      { path: "**",redirectTo: 'hello'}
     ]),
     NgbModule
   ],

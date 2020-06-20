@@ -2,9 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { MotelService } from "../motel.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DataService } from '../services/data.service';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-students',
@@ -17,8 +14,6 @@ export class StudentsComponent implements OnInit {
   majors = [];
   majorId;
   classId;
-  term;
-  message
   genderSelected = null
 
   studentForm = new FormGroup({
@@ -38,7 +33,6 @@ export class StudentsComponent implements OnInit {
     private motelService: MotelService,
     private activeRoute: ActivatedRoute,
     private route: Router,
-    private dataService: DataService
   ) { }
 
   loadDSStudent() {
@@ -58,9 +52,6 @@ export class StudentsComponent implements OnInit {
         this.class = data;
       });
     });
-
-    //Truyền tham số sang student-detail
-    this.dataService.changeMessage([this.majorId, this.classId])
   }
 
   editStudent(id) {

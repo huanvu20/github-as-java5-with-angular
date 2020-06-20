@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MotelService } from "../motel.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-student-deitail',
@@ -24,7 +22,7 @@ export class StudentDeitailComponent implements OnInit {
   studentId = null;
 
   term;
-  
+
   message
 
   majorSelected = null
@@ -50,12 +48,10 @@ export class StudentDeitailComponent implements OnInit {
     private motelService: MotelService,
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private dataService: DataService
   ) { }
 
   loadIn4Student() {
     this.motelService.getStudentById(this.majorId, this.classId, this.studentId).subscribe(data => {
-      console.log(data);
       this.student = data;
     });
   }
@@ -66,12 +62,9 @@ export class StudentDeitailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.currentMessage.subscribe(message => this.message = message);
-    this.majorId = this.message[0]
-    this.classId = this.message[1]
     this.activeRoute.paramMap.subscribe(params => {
-      // this.majorId = params.get("majorId");
-      // this.classId = params.get("classId");
+      this.majorId = params.get("majorId");
+      this.classId = params.get("classId");
       this.studentId = params.get("studentId");
       this.loadIn4Student()
       this.motelService.getClassById(this.majorId, this.classId).subscribe(data => {
@@ -82,14 +75,14 @@ export class StudentDeitailComponent implements OnInit {
       });
     });
     this.editStudent(this.studentId)
-
-
+    // if(this.studentForm.value == null){
+    //   this.router.navigate(['hello'])
+    // }
   }
 
   editStudent(id) {
     if (this.majorId != null && this.classId && id != null) {
       this.motelService.getStudentById(this.majorId, this.classId, id).subscribe(data => {
-        console.log(data);
         this.studentForm.setValue(data);
         this.genderSelected = (this.studentForm.value.gender == true) ? 1 : 2
       });
@@ -99,7 +92,6 @@ export class StudentDeitailComponent implements OnInit {
   updateStudent() {
     // cập nhật
     this.motelService.updateStudent(this.studentForm.value, this.majorId, this.classId).subscribe(data => {
-      console.log(data);
       this.loadIn4Student();
     });
     alert("Cập nhật thành công!")
@@ -134,13 +126,11 @@ export class StudentDeitailComponent implements OnInit {
     if (this.studentForm.value.id == null) {
       // thêm mới
       this.motelService.addStudent(this.studentForm.value, this.idMajorto, this.idClassto).subscribe(data => {
-        console.log(data);
       });
     }
   }
   removeStudent() {
     this.motelService.removeStudentById(this.idMajorto, this.idClassto, this.studentId).subscribe(data => {
-      console.log(data);
     });
   }
   chuyenNganh() {

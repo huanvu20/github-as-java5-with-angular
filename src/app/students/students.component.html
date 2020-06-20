@@ -14,7 +14,7 @@
                 <td style="padding-top: 40px;">{{s.name}}</td>
                 <td style="padding-top: 35px;">
                     <a type="button" class="btn btn-info" 
-                        [routerLink]="['../../../student-detail',s.id]">Sửa</a>&nbsp;
+                        [routerLink]="['../../../student-detail',majorId,classId,s.id]">Sửa</a>&nbsp;
                     <button type="button" class="btn btn-danger" (click)="removeStudent(s.id)">Xóa</button>
                 </td>
             </tr>
