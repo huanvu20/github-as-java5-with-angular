@@ -1,52 +1,48 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row" style="margin: auto;">
+        <h3>DANH SÁCH SINH VIÊN LỚP {{class.className}}</h3>
+    </div>
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-md-8">
             <div class="row">
-                <h3>DANH SÁCH SINH VIÊN LỚP {{class.className}}</h3>
+                <div class="col-md-5">
+                    <div class="form-group form-inline">
+                        Tìm kiếm: <input class="form-control ml-2" type="text" name="search" [(ngModel)]="term" />
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <button type="button" data-toggle="modal" data-target="#staticBackdrop1"
+                        class="btn btn-primary">Thêm</button>
+                </div>
             </div>
-            <div class="row">
-				<div class="col-md-8">
-					<div class="row">
-						<div class="col-md-5">
-							<div class="form-group form-inline">
-								Tìm kiếm: <input class="form-control ml-2" type="text" name="search" [(ngModel)]="term" />
-							</div>
-						</div>
-						<div class="col-md-7">
-                            <button type="button" data-toggle="modal" data-target="#staticBackdrop1"
-                            class="btn btn-primary">Thêm</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<select [(ngModel)]="classSelected" (ngModelChange)="onClassSelected($event)"
-						 class="form-control" style="width: 200px;margin-left: 37px;">
-						<option *ngFor="let c of classes" [value]="c.id">
-							{{c.className}}
-						</option>   
-					</select>
-				</div>
-            </div>
+        </div>
+        <div class="col-md-4">
+            <select [(ngModel)]="classSelected" (ngModelChange)="onClassSelected($event)" class="form-control"
+                style="width: 200px;margin-left: 37px;">
+                <option *ngFor="let c of classes" [value]="c.id">
+                    {{c.className}}
+                </option>
+            </select>
         </div>
     </div>
     <table class="table">
         <thead class="thead-dark">
-        <tr>
-            <th style="width: 200px;">Mã SV</th>
-            <th style="width: 250px;">Ảnh đại diện</th>
-            <th style="width: 375px;">Họ và tên</th>
-            <th></th>
-        </tr>
-        <tr *ngFor="let s of students | filter:term">
-            <td style="padding-top: 40px;">{{s.studentId}}</td>
-            <td><img [src]="s.avatar" class="rounded-circle" alt="Cinque Terre" width="96px"></td>
-            <td style="padding-top: 40px;">{{s.name}}</td>
-            <td style="padding-top: 35px;">
-                <a type="button" class="btn btn-info"
-                    [routerLink]="['../../../student-detail',majorId,classId,s.id]">Xem</a>&nbsp;
-                <button type="button" class="btn btn-danger" (click)="removeStudent(s.id)">Xóa</button>
-            </td>
-        </tr>
+            <tr>
+                <th style="width: 200px;">Mã SV</th>
+                <th style="width: 250px;">Ảnh đại diện</th>
+                <th style="width: 375px;">Họ và tên</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let s of students | filter:term">
+                <td style="padding-top: 40px;">{{s.studentId}}</td>
+                <td><img [src]="s.avatar" class="rounded-circle" alt="Cinque Terre" width="96px"></td>
+                <td style="padding-top: 40px;">{{s.name}}</td>
+                <td style="padding-top: 35px;">
+                    <a type="button" class="btn btn-info"
+                        [routerLink]="['../../../student-detail',majorId,classId,s.id]">Xem</a>&nbsp;
+                    <button type="button" class="btn btn-danger" (click)="removeStudent(s.id)">Xóa</button>
+                </td>
+            </tr>
         </thead>
     </table>
 </div>
