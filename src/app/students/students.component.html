@@ -4,16 +4,8 @@
     </div>
     <div class="row" style="margin-top: 15px;">
         <div class="col-md-8">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="form-group form-inline">
-                        Tìm kiếm: <input class="form-control ml-2" type="text" name="search" [(ngModel)]="term" />
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <button type="button" data-toggle="modal" data-target="#staticBackdrop1"
-                        class="btn btn-primary">Thêm</button>
-                </div>
+            <div class="form-group form-inline">
+                Tìm kiếm: <input class="form-control ml-2" type="text" name="search" [(ngModel)]="term" />
             </div>
         </div>
         <div class="col-md-4">
@@ -31,11 +23,16 @@
                 <th style="width: 200px;">Mã SV</th>
                 <th style="width: 250px;">Ảnh đại diện</th>
                 <th style="width: 375px;">Họ và tên</th>
-                <th></th>
+                <th>
+                    <button type="button" data-toggle="modal" data-target="#staticBackdrop1"
+                        class="btn btn-primary">Thêm</button>
+                </th>
             </tr>
             <tr *ngFor="let s of students | filter:term">
                 <td style="padding-top: 40px;">{{s.studentId}}</td>
-                <td><img [src]="s.avatar" class="rounded-circle" alt="Cinque Terre" width="96px"></td>
+                <td>
+                    <img [src]="s.avatar" class="rounded-circle" alt="Cinque Terre" width="96px" height="96px">
+                </td>
                 <td style="padding-top: 40px;">{{s.name}}</td>
                 <td style="padding-top: 35px;">
                     <a type="button" class="btn btn-info"
@@ -61,17 +58,34 @@
                         <div class="col">
                             <label>Họ và tên</label>
                             <input type="text" class="form-control" formControlName="name">
+                            <div *ngIf="name.invalid && (name.touched || name.dirty)" style="color: red;">
+                                <div *ngIf="name.errors.required">Không được để trống</div>
+                                <div *ngIf="name.errors.pattern">Sai định dạng</div>
+                            </div>
                         </div>
                         <div class="col">
-                            <label>Mã SV</label>
+                            <label>Mã SV (PHxxxxx)</label>
                             <input type="text" class="form-control" formControlName="studentId">
+                            <div *ngIf="studentId.invalid && (studentId.touched || studentId.dirty)"
+                                style="color: red;">
+                                <div *ngIf="studentId.errors.required">Không được để trống</div>
+                                <div *ngIf="studentId.errors.pattern">Sai định dạng</div>
+                                <div *ngIf="studentId.errors.pattern == null">
+                                    <div *ngIf="studentId.errors.minlength">Chỉ được nhập 5 số sau kí tự PH</div>
+                                    <div *ngIf="studentId.errors.maxlength">Chỉ được nhập 5 số sau kí tự PH</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <br>
                     <div class="form-row">
                         <div class="col">
                             <label>Ngày sinh</label>
-                            <input type="text" class="form-control" formControlName="birtDate">
+                            <input class="form-control" type="date" value="2011-08-19" id="example-date-input"
+                                formControlName="birtDate">
+                            <div *ngIf="birtDate.invalid && (birtDate.touched || birtDate.dirty)" style="color: red;">
+                                <div *ngIf="birtDate.errors.required">Để trống hoặc sai định dạng</div>
+                            </div>
                         </div>
                         <div class="col">
                             <label>Giới tính</label>
@@ -79,6 +93,9 @@
                                 <option value=true>Nam</option>
                                 <option value=false>Nữ</option>
                             </select>
+                            <div *ngIf="gender.invalid && (gender.touched || gender.dirty)" style="color: red;">
+                                <div *ngIf="gender.errors.required">Vui lòng chọn giới tính</div>
+                            </div>
                         </div>
                     </div>
                     <br>
@@ -86,6 +103,10 @@
                         <div class="col">
                             <label>Đường dẫn hình ảnh</label>
                             <input type="text" class="form-control" formControlName="avatar">
+                            <div *ngIf="avatar.invalid && (avatar.touched || avatar.dirty)" style="color: red;">
+                                <div *ngIf="avatar.errors.required">Không được để trống</div>
+                                <div *ngIf="avatar.errors.pattern">Sai đường dẫn hình ảnh</div>
+                            </div>
                         </div>
                     </div>
                     <br>
@@ -96,10 +117,17 @@
                         <div class="col">
                             <label>Email</label>
                             <input type="text" class="form-control" formControlName="email">
+                            <div *ngIf="email.invalid && (email.touched || email.dirty)" style="color: red;">
+                                <div *ngIf="email.errors.required">Không được để trống</div>
+                            </div>
                         </div>
                         <div class="col">
                             <label>Số điện thoại</label>
                             <input type="text" class="form-control" formControlName="phoneNumber">
+                            <div *ngIf="phoneNumber.invalid && (phoneNumber.touched || phoneNumber.dirty)"
+                                style="color: red;">
+                                <div *ngIf="phoneNumber.errors.required">Không được để trống</div>
+                            </div>
                         </div>
                     </div>
                     <br>
@@ -107,12 +135,16 @@
                         <div class="col">
                             <label>Địa chỉ</label>
                             <input type="text" class="form-control" formControlName="address">
+                            <div *ngIf="address.invalid && (address.touched || address.dirty)" style="color: red;">
+                                <div *ngIf="address.errors.required">Không được để trống</div>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveStudent()">Thêm</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveStudent()"
+                    [disabled]="studentForm.invalid">Thêm</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Đóng</button>
             </div>
         </div>

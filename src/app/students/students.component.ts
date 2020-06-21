@@ -23,14 +23,39 @@ export class StudentsComponent implements OnInit {
   studentForm = new FormGroup({
     id: new FormControl(null),
     classId: new FormControl(null),
-    name: new FormControl(""),
-    studentId: new FormControl(""),
-    avatar: new FormControl(""),
-    email: new FormControl(""),
-    phoneNumber: new FormControl(""),
-    address: new FormControl(""),
-    gender: new FormControl(""),
-    birtDate: new FormControl("")
+    studentId: new FormControl("PH",[
+      Validators.required,
+      Validators.pattern("PH[0-9]*"),
+      Validators.maxLength(7),
+      Validators.minLength(7)
+    ]),
+    name: new FormControl("",[
+      Validators.required,
+      Validators.pattern("^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+        "ẸẺẼỀỀẾưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+        "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+[ a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+        "ẸẺẼỀỀẾưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+        "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]*"),
+    ]),
+    avatar: new FormControl("",[
+      Validators.required,
+      Validators.pattern(/\.(gif|jpe?g|tiff|png|webp|bmp)$/i)
+    ]),
+    email: new FormControl("",[
+      Validators.required,
+    ]),
+    phoneNumber: new FormControl("",[
+      Validators.required,
+    ]),
+    address: new FormControl("",[
+      Validators.required,
+    ]),
+    gender: new FormControl("",[
+      Validators.required
+    ]),
+    birtDate: new FormControl("",[
+      Validators.required
+    ])
   });
 
   constructor(
@@ -102,14 +127,47 @@ export class StudentsComponent implements OnInit {
     this.studentForm = new FormGroup({
       id: new FormControl(null),
       classId: new FormControl(null),
-      name: new FormControl(""),
-      studentId: new FormControl(""),
-      avatar: new FormControl(""),
-      email: new FormControl(""),
-      phoneNumber: new FormControl(""),
-      address: new FormControl(""),
-      gender: new FormControl(""),
-      birtDate: new FormControl("")
+      studentId: new FormControl("PH",[
+        Validators.required,
+        Validators.pattern("PH[0-9]*"),
+        Validators.maxLength(7),
+        Validators.minLength(7)
+      ]),
+      name: new FormControl("",[
+        Validators.required,
+        Validators.pattern("^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+          "ẸẺẼỀỀẾưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+          "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+[ a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+          "ẸẺẼỀỀẾưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+          "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]*"),
+      ]),
+      avatar: new FormControl("",[
+        Validators.required,
+        Validators.pattern(/\.(gif|jpe?g|tiff|png|webp|bmp)$/i)
+      ]),
+      email: new FormControl("",[
+        Validators.required,
+      ]),
+      phoneNumber: new FormControl("",[
+        Validators.required,
+      ]),
+      address: new FormControl("",[
+        Validators.required,
+      ]),
+      gender: new FormControl("",[
+        Validators.required
+      ]),
+      birtDate: new FormControl("",[
+        Validators.required
+      ])
     });
   }
+  get name() { return this.studentForm.get('name'); }
+  get studentId() { return this.studentForm.get('studentId'); }
+  get avatar() { return this.studentForm.get('avatar'); }
+  get email() { return this.studentForm.get('email'); }
+  get phoneNumber() { return this.studentForm.get('phoneNumber'); }
+  get address() { return this.studentForm.get('address'); }
+  get gender() { return this.studentForm.get('gender'); }
+  get birtDate() { return this.studentForm.get('birtDate'); }
 }
