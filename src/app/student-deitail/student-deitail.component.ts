@@ -14,7 +14,6 @@ export class StudentDeitailComponent implements OnInit {
 
   class = null;
   major = null;
-  student = null;
 
   majors = [];
   classes = [];

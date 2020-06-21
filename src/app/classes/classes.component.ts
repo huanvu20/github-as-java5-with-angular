@@ -2,16 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { MotelService } from "../motel.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DataService } from '../services/data.service';
-import * as $ from 'jquery';
 
 
 @Component({
   selector: 'app-classes',
   templateUrl: './classes.component.html',
   styleUrls: ['./classes.component.css'],
-  providers: [NgbModalConfig, NgbModal]
 })
 
 export class ClassesComponent implements OnInit {

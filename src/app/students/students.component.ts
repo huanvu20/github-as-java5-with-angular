@@ -2,20 +2,24 @@ import { Component, OnInit } from "@angular/core";
 import { MotelService } from "../motel.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
-  styleUrls: ['./students.component.css']
+  styleUrls: ['./students.component.css'],
 })
 export class StudentsComponent implements OnInit {
   class = null;
   students = [];
   majors = [];
+  classes = [];
+
   majorId;
   classId;
-  genderSelected = null
 
+  genderSelected = null
+  classSelected = null
+
+  term;
   studentForm = new FormGroup({
     id: new FormControl(null),
     classId: new FormControl(null),
@@ -41,16 +45,21 @@ export class StudentsComponent implements OnInit {
       this.students = data;
     });
   }
-
+  loadDSClass(){
+    this.motelService.getClassesById(this.majorId).subscribe(data => {
+      this.classes = data;
+    });
+  }
   ngOnInit() {
     this.activeRoute.paramMap.subscribe(params => {
       this.majorId = params.get("majorId");
       this.classId = params.get("classId");
       this.loadDSStudent()
       this.motelService.getClassById(this.majorId, this.classId).subscribe(data => {
-        console.log(data);
         this.class = data;
       });
+      this.loadDSClass()
+      this.classSelected = this.classId
     });
   }
 
@@ -63,9 +72,14 @@ export class StudentsComponent implements OnInit {
       });
     }
   }
-  onGenderSelected(val: any) {
-    this.studentForm.value.gender = (val == "Nam") ? true : false
+  onClassSelected(val: any) {
+    this.classId = val
+    this.loadDSStudent()
+    this.motelService.getClassById(this.majorId, this.classId).subscribe(data => {
+      this.class = data;
+    });
   }
+
   saveStudent() {
     if (this.studentForm.value.id == null) {
       // thêm mới

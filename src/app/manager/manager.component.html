@@ -6,7 +6,7 @@
         </div>
         <ul class="list-unstyled components">
             <img src="https://scontent.fhan3-3.fna.fbcdn.net/v/t1.0-9/p960x960/90340645_2594260954186886_6567393913462587392_o.jpg?_nc_cat=106&_nc_sid=85a577&_nc_oc=AQkfrO_fb6MIQ6TrL_22byDEeSmC6aF73ndoKHOdQ5ktCNphVaMQCGrkAuQoVswIyR8&_nc_ht=scontent.fhan3-3.fna&_nc_tp=6&oh=8641d75be09305abad2bdc70a864c8e9&oe=5F108702"
-            class="rounded-circle" width="50px" style="margin-left: 10px;"/>&nbsp;&nbsp; Vũ Đức Huân
+                class="rounded-circle" width="50px" style="margin-left: 10px;" />&nbsp;&nbsp; Vũ Đức Huân
             <hr>
             <li>
                 <a routerLink="/manager/home">Trang chủ</a>
@@ -19,22 +19,14 @@
 
     <!-- Page Content  -->
     <div id="content">
-
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-7">
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-left"></i>
-                        </button>
-                    </div>
-                    <div class="col-md-6">
-                    </div>
-                </div>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                </div>
-            </div>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                </li>
+            </ul>
         </nav>
         <router-outlet></router-outlet>
     </div>

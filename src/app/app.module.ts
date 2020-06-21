@@ -14,7 +14,6 @@ import { ClassesComponent } from './classes/classes.component';
 import { StudentsComponent } from './students/students.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LoginComponent } from './login/login.component';
-import { from } from 'rxjs';
 import { ManagerComponent } from './manager/manager.component';
 import { HomeComponent } from './home/home.component';
 import { StudentDeitailComponent } from './student-deitail/student-deitail.component';

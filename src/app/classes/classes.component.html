@@ -6,8 +6,16 @@
 			</div>
 			<div class="row">
 				<div class="col-md-8">
-					<div class="form-group form-inline">
-						Tìm kiếm: <input class="form-control ml-2" type="text" name="search" [(ngModel)]="term" />
+					<div class="row">
+						<div class="col-md-5">
+							<div class="form-group form-inline">
+								Tìm kiếm: <input class="form-control ml-2" type="text" name="search" [(ngModel)]="term" />
+							</div>
+						</div>
+						<div class="col-md-7">
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+							data-target="#staticBackdrop" (click)="cancel()">Thêm</button>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -24,11 +32,9 @@
 	<div class="row">
 		<table class="table table-striped">
 			<tr>
-				<th style="width: 505px;" colspan="2">Tên lớp</th>
-				<th>
-					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#staticBackdrop" (click)="cancel()">Thêm</button>
-				</th>
+				<th style="width: 300px;">Tên lớp</th>
+				<th style="width: 510px;"></th>
+				<th></th>
 			</tr>
 			<tr *ngFor="let c of classes | filter:term">
 				<td>{{c.className}}</td>
