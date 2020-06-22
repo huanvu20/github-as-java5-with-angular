@@ -93,6 +93,12 @@ export class ClassesComponent implements OnInit {
 
 
   saveClass() {
+    for(var c of this.classes){
+      if(c.className == this.classForm.value.className){
+        alert('Tên lớp đã tồn tại!')
+        return
+      }
+    }
     if (this.classForm.value.id == null) {
       // thêm mới
       this.classForm.value.id = this.majorId;

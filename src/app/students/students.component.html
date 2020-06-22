@@ -4,9 +4,9 @@
     </div>
     <div class="row" style="margin-top: 15px;">
         <div class="col-md-8">
-            <div class="form-group form-inline">
-                Tìm kiếm: <input class="form-control ml-2" type="text" name="search" [(ngModel)]="term" />
-            </div>
+			<div class="form-group form-inline">
+				Tìm kiếm: <input class="form-control ml-2" type="text" name="search" [(ngModel)]="term" />
+			</div>
         </div>
         <div class="col-md-4">
             <select [(ngModel)]="classSelected" (ngModelChange)="onClassSelected($event)" class="form-control"
@@ -18,7 +18,7 @@
         </div>
     </div>
     <table class="table">
-        <thead class="thead-dark">
+        <!-- <thead class="thead-dark"> -->
             <tr>
                 <th style="width: 200px;">Mã SV</th>
                 <th style="width: 250px;">Ảnh đại diện</th>
@@ -28,7 +28,7 @@
                         class="btn btn-primary">Thêm</button>
                 </th>
             </tr>
-            <tr *ngFor="let s of students | filter:term">
+			<tr *ngFor="let s of students | filter:term">
                 <td style="padding-top: 40px;">{{s.studentId}}</td>
                 <td>
                     <img [src]="s.avatar" class="rounded-circle" alt="Cinque Terre" width="96px" height="96px">
@@ -40,7 +40,7 @@
                     <button type="button" class="btn btn-danger" (click)="removeStudent(s.id)">Xóa</button>
                 </td>
             </tr>
-        </thead>
+        <!-- </thead> -->
     </table>
 </div>
 

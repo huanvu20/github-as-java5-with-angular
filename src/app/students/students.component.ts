@@ -106,6 +106,12 @@ export class StudentsComponent implements OnInit {
   }
 
   saveStudent() {
+    for(var s of this.students){
+      if(s.studentId == this.studentForm.value.studentId){
+        alert("Mã sinh viên đã tồn tại")
+        return
+      }
+    }
     if (this.studentForm.value.id == null) {
       // thêm mới
       this.motelService.addStudent(this.studentForm.value, this.majorId, this.classId).subscribe(data => {

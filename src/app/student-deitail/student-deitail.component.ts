@@ -121,7 +121,7 @@ export class StudentDeitailComponent implements OnInit {
     this.classSelected = this.classId
   }
 
-  saveStudent() {
+  addStudent() {
     if (this.studentForm.value.id == null) {
       // thêm mới
       this.motelService.addStudent(this.studentForm.value, this.idMajorto, this.idClassto).subscribe(data => {
@@ -143,10 +143,10 @@ export class StudentDeitailComponent implements OnInit {
     let conf = confirm("Chọn OK để thực thi");
     if (conf) {
       //add student vào lớp/ngành mới
-      this.saveStudent()
+      this.addStudent()
       alert('Thành công!')
       this.removeStudent()
-      this.router.navigate(['manager'])
+      this.router.navigate(['manager/students/'+this.idMajorto+"/"+this.idClassto])
     }
   }
 }
